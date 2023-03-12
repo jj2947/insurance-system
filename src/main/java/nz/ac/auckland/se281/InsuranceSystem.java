@@ -46,7 +46,7 @@ public class InsuranceSystem {
     } else if (userName.length() < 3) {
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName);
     } else if (Integer.valueOf(age) <= 0) {
-      MessageCli.INVALID_AGE.printMessage(age);
+      MessageCli.INVALID_AGE.printMessage(age, userName);
     } else {
       userNames.add(userName);
       ages.add(age);
