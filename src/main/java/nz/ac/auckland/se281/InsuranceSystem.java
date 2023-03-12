@@ -17,16 +17,23 @@ public class InsuranceSystem {
 
   public void printDatabase() {
     if (userNames.size() == 0) {
+
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");
+
     } else if (userNames.size() == 1) {
+
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("1", ":");
       MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage("1", userNames.get(0), ages.get(0));
+
     } else {
+      
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(userNames.size()), "s", ":");
+
       for (int i = 0; i < userNames.size(); i++) {
         MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(String.valueOf(i + 1), userNames.get(i),
             ages.get(i));
       }
+
     }
   }
 
