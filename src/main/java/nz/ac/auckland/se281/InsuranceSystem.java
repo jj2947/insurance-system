@@ -1,14 +1,14 @@
 package nz.ac.auckland.se281;
 
-import nz.ac.auckland.se281.Main.PolicyType;
-
 import java.util.ArrayList;
+import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
 
-  // Creates the arraylist that will store all the user profiles
+  // Creates the arraylist that will store all the usernames for the profiles created
   private ArrayList<String> userNames = new ArrayList<String>();
 
+  // Creates the arraylist that will store all the ages for the profiles creates
   private ArrayList<String> ages = new ArrayList<String>();
 
   public InsuranceSystem() {
@@ -26,21 +26,32 @@ public class InsuranceSystem {
       MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage("1", userNames.get(0), ages.get(0));
 
     } else {
-      
+
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(userNames.size()), "s", ":");
 
       for (int i = 0; i < userNames.size(); i++) {
-        MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(String.valueOf(i + 1), userNames.get(i),
-            ages.get(i));
+        MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
+            String.valueOf(i + 1), userNames.get(i), ages.get(i));
       }
-
     }
   }
 
   public void createNewProfile(String userName, String age) {
-    userNames.add(userName);
-    ages.add(age);
-    System.out.println("New profile created for " + userName + " with age " + age + ".");
+
+    userName = userName.toLowerCase();
+    userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
+
+    if (userNames.contains(userName) == true) {
+      MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(userName);
+    } else if (userName.length() < 3) {
+      MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName);
+    } else if (Integer.valueOf(age) <= 0) {
+      MessageCli.INVALID_AGE.printMessage(age);
+    } else {
+      userNames.add(userName);
+      ages.add(age);
+      MessageCli.PROFILE_CREATED.printMessage(userName, age);
+    }
   }
 
   public void loadProfile(String userName) {
