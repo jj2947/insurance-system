@@ -14,9 +14,8 @@ public class InsuranceSystem {
   }
 
   public void printDatabase() {
-    if (profiles.size() == 0) {
-      System.out.println("Database has 0 profiles.");
-    }
+    Database database = new Database();
+    database.printDB();
   }
 
   public void createNewProfile(String userName, String age) {
