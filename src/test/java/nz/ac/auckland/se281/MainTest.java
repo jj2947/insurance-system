@@ -11,10 +11,10 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-    MainTest.Task1.class,
-// MainTest.Task2.class, // Uncomment this line when to start Task 2
-// MainTest.Task3.class, // Uncomment this line when to start Task 3
-// MainTest.YourTests.class, // Uncomment this line to run your own tests
+  MainTest.Task1.class,
+  // MainTest.Task2.class, // Uncomment this line when to start Task 2
+  // MainTest.Task3.class, // Uncomment this line when to start Task 3
+  // MainTest.YourTests.class, // Uncomment this line to run your own tests
 })
 public class MainTest {
   public static class Task1 extends CliTest {
@@ -79,7 +79,17 @@ public class MainTest {
 
     @Test
     public void T1_07_add_three_clients_with_info() throws Exception {
-      runCommands(CREATE_PROFILE, "Jordan", "21", CREATE_PROFILE, "Tom", "25", CREATE_PROFILE, "Tim", "25", PRINT_DB);
+      runCommands(
+          CREATE_PROFILE,
+          "Jordan",
+          "21",
+          CREATE_PROFILE,
+          "Tom",
+          "25",
+          CREATE_PROFILE,
+          "Tim",
+          "25",
+          PRINT_DB);
       assertContains("Database has 3 profiles:");
       assertContains("1: Jordan, 21");
       assertContains("2: Tom, 25");
@@ -374,24 +384,58 @@ public class MainTest {
 
     @Test
     public void TY_01_your_own_test() throws Exception {
-      // Write your own test here, in the same format as the other tests.
-      runCommands(PRINT_DB);
-      assertContains("");
+      runCommands(
+          CREATE_PROFILE,
+          "Jordan",
+          "21",
+          CREATE_PROFILE,
+          "Tom",
+          "25",
+          CREATE_PROFILE,
+          "Tim",
+          "25",
+          PRINT_DB);
+      assertContains("Database has 3 profiles:");
+      assertContains("1: Jordan, 21");
+      assertContains("2: Tom, 25");
+      assertContains("3: Tim, 25");
+      assertDoesNotContain("jorDan");
+      assertDoesNotContain("TOM");
     }
 
     @Test
     public void TY_02_your_own_test() throws Exception {
       // Write your own test here, in the same format as the other tests.
-      runCommands(PRINT_DB);
-      assertContains("");
+      runCommands(
+          CREATE_PROFILE,
+          "Jordan",
+          "-1",
+          CREATE_PROFILE,
+          "Tom",
+          "thirty",
+          CREATE_PROFILE,
+          "Tim",
+          "25",
+          PRINT_DB);
+      assertContains("Database has 1 profile:");
+      assertContains("1: Tim, 25");
+      assertContains(
+          "'-1' is an invalid age, please provide a positive whole number only. No profile was"
+              + " created for Jordan.");
+      assertContains(
+          "'thirty' is an invalid age, please provide a positive whole number only. No profile was"
+              + " created for Tom.");
+      assertDoesNotContain("jorDan");
+      assertDoesNotContain("TOM");
     }
   }
 
-  private static final Object[] CREATE_SOME_CLIENTS = new Object[] {
-      CREATE_PROFILE, "Jordan", "21", //
-      CREATE_PROFILE, "Tom", "25", //
-      CREATE_PROFILE, "Jenny", "23",
-  };
+  private static final Object[] CREATE_SOME_CLIENTS =
+      new Object[] {
+        CREATE_PROFILE, "Jordan", "21", //
+        CREATE_PROFILE, "Tom", "25", //
+        CREATE_PROFILE, "Jenny", "23",
+      };
 
   private static Object[] unpack(Object[] commands, Object... more) {
     final List<Object> all = new ArrayList<Object>();

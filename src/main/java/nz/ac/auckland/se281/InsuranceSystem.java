@@ -45,12 +45,12 @@ public class InsuranceSystem {
       MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(userName);
     } else if (userName.length() < 3) {
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName);
-    } else if (Integer.valueOf(age) <= 0) {
-      MessageCli.INVALID_AGE.printMessage(age, userName);
-    } else {
+    } else if (Integer.valueOf(age) >= 0) {
       userNames.add(userName);
       ages.add(age);
       MessageCli.PROFILE_CREATED.printMessage(userName, age);
+    } else {
+      MessageCli.INVALID_AGE.printMessage(age, userName);
     }
   }
 
