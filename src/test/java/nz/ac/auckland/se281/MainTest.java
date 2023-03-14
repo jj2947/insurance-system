@@ -428,6 +428,30 @@ public class MainTest {
       assertDoesNotContain("jorDan");
       assertDoesNotContain("TOM");
     }
+
+    @Test
+    public void TY_03_your_own_test() throws Exception {
+      // Write your own test here, in the same format as the other tests.
+      runCommands(
+          CREATE_PROFILE,
+          "Jordan",
+          "-1",
+          CREATE_PROFILE,
+          "TiM",
+          "25",
+          CREATE_PROFILE,
+          "Tim",
+          "25",
+          PRINT_DB);
+      assertContains("Database has 1 profile:");
+      assertContains("1: Tim, 25");
+      assertContains(
+          "'-1' is an invalid age, please provide a positive whole number only. No profile was"
+              + " created for Jordan.");
+      assertContains("Usernames must be unique. No profile was created for 'Tim'.");
+      assertDoesNotContain("jorDan");
+      assertDoesNotContain("TiM");
+    }
   }
 
   private static final Object[] CREATE_SOME_CLIENTS =
