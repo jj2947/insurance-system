@@ -4,6 +4,7 @@ import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
 
+  // Creates a database instance
   Database database = new Database();
 
   public InsuranceSystem() {
