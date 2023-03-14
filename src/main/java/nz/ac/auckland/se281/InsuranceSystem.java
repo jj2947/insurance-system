@@ -1,37 +1,34 @@
 package nz.ac.auckland.se281;
 
-import java.util.ArrayList;
 import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
 
-  // Creates the arraylist that will store all the usernames for the profiles created
-  private ArrayList<String> userNames = new ArrayList<String>();
-
-  // Creates the arraylist that will store all the ages for the profiles creates
-  private ArrayList<String> ages = new ArrayList<String>();
+  Database database = new Database();
 
   public InsuranceSystem() {
-    // Only this constructor can be used (if you need to initialise fields).
+    // Only this constructor can be used (if you need to initialise fields).\
   }
 
   public void printDatabase() {
-    if (userNames.size() == 0) {
+
+    if (database.getSize() == 0) {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");
 
-    } else if (userNames.size() == 1) {
+    } else if (database.getSize() == 1) {
 
-      MessageCli.PRINT_DB_POLICY_COUNT.printMessage("1", ":");
-      MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage("1", userNames.get(0), ages.get(0));
+      MessageCli.PRINT_DB_POLICY_COUNT.printMessage("1", ":", "");
+      MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
+          "1", database.getUserNames(0), database.getAges(0));
 
     } else {
 
-      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(userNames.size()), "s", ":");
+      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(database.getSize()), "s", ":");
 
-      for (int i = 0; i < userNames.size(); i++) {
+      for (int i = 0; i < database.getSize(); i++) {
         MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
-            String.valueOf(i + 1), userNames.get(i), ages.get(i));
+            String.valueOf(i + 1), database.getUserNames(i), database.getAges(i));
       }
     }
   }
@@ -41,24 +38,33 @@ public class InsuranceSystem {
     userName = userName.toLowerCase();
     userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
 
+    database.setUserName(userName);
+    database.setAge(age);
+
     boolean isInt = false;
 
     for (int i = 0; i < age.length(); i++) {
-      if (Character.isDigit(age.charAt(i))) {
+      if (Character.isDigit(database.getAge().charAt(i))) {
         isInt = true;
       }
     }
 
-    if (userNames.contains(userName) == true) {
-      MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(userName);
-    } else if (userName.length() < 3) {
-      MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName);
-    } else if (isInt == true && Integer.valueOf(age) >= 0) {
-      userNames.add(userName);
-      ages.add(age);
-      MessageCli.PROFILE_CREATED.printMessage(userName, age);
+    if (database.alreadyContains(userName)) {
+
+      MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(database.getUserName());
+
+    } else if (database.getUserName().length() < 3) {
+
+      MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(database.getUserName());
+
+    } else if (isInt == true && Integer.valueOf(database.getAge()) >= 0) {
+
+      database.addUserName();
+      database.addAge();
+      MessageCli.PROFILE_CREATED.printMessage(database.getUserName(), database.getAge());
+
     } else {
-      MessageCli.INVALID_AGE.printMessage(age, userName);
+      MessageCli.INVALID_AGE.printMessage(database.getAge(), database.getUserName());
     }
   }
 
