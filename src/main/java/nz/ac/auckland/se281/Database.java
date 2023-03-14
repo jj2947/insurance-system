@@ -13,11 +13,6 @@ public class Database {
   private String userName;
   private String age;
 
-  public Database(String userName, String age) {
-    this.userName = userName;
-    this.age = age;
-  }
-
   public Database() {
     this.userName = "";
     this.age = "";
