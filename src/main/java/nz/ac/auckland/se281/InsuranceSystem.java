@@ -41,11 +41,19 @@ public class InsuranceSystem {
     userName = userName.toLowerCase();
     userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
 
+    boolean isInt = false;
+
+    for (int i = 0; i < age.length(); i++) {
+      if (Character.isDigit(age.charAt(i))) {
+        isInt = true;
+      }
+    }
+
     if (userNames.contains(userName) == true) {
       MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(userName);
     } else if (userName.length() < 3) {
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(userName);
-    } else if (Integer.valueOf(age) >= 0) {
+    } else if (isInt == true && Integer.valueOf(age) >= 0) {
       userNames.add(userName);
       ages.add(age);
       MessageCli.PROFILE_CREATED.printMessage(userName, age);
