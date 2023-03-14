@@ -5,12 +5,13 @@ import nz.ac.auckland.se281.Main.PolicyType;
 public class InsuranceSystem {
 
   // Creates a database instance
-  Database database = new Database();
+  private Database database = new Database();
 
   public InsuranceSystem() {
     // Only this constructor can be used (if you need to initialise fields).\
   }
 
+  // Implements the PRINT_DB command
   public void printDatabase() {
 
     if (database.getSize() == 0) {
