@@ -12,10 +12,12 @@ public class Database {
 
   private String userName;
   private String age;
+  private static int size;
 
   public Database() {
     this.userName = "";
     this.age = "";
+    size = 0;
   }
 
   public String getAge() {
@@ -32,6 +34,7 @@ public class Database {
 
   public void setUserName(String userName) {
     this.userName = userName;
+    size++;
   }
 
   public void addUserName() {
@@ -50,8 +53,8 @@ public class Database {
     return ages.get(indexPos);
   }
 
-  public int getSize() {
-    return userNames.size();
+  public static int getSize() {
+    return size;
   }
 
   public boolean alreadyContains(String userName) {

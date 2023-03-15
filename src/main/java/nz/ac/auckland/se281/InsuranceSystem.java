@@ -14,11 +14,11 @@ public class InsuranceSystem {
   // Implements the PRINT_DB command
   public void printDatabase() {
 
-    if (database.getSize() == 0) {
+    if (Database.getSize() == 0) {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");
 
-    } else if (database.getSize() == 1) {
+    } else if (Database.getSize() == 1) {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("1", ":", "");
       MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
@@ -26,9 +26,9 @@ public class InsuranceSystem {
 
     } else {
 
-      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(database.getSize()), "s", ":");
+      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(Database.getSize()), "s", ":");
 
-      for (int i = 0; i < database.getSize(); i++) {
+      for (int i = 0; i < Database.getSize(); i++) {
         MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
             String.valueOf(i + 1), database.getUserNames(i), database.getAges(i));
       }
