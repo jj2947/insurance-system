@@ -34,11 +34,11 @@ public class Database {
 
   public void setUserName(String userName) {
     this.userName = userName;
-    size++;
   }
 
   public void addUserName() {
     userNames.add(this.userName);
+    size++;
   }
 
   public void addAge() {
