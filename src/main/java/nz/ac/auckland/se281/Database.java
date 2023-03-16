@@ -16,8 +16,8 @@ public class Database {
 
   // Constructor that initialises userName, age and size
   public Database() {
-    this.userName = "";
-    this.age = "";
+    this.userName = " ";
+    this.age = " ";
     size = 0;
   }
 
