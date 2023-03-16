@@ -6,6 +6,7 @@ import nz.ac.auckland.se281.Main.PolicyType;
 public class InsuranceSystem {
 
   private ArrayList<Profile> profile = new ArrayList<Profile>();
+  private boolean alreadyContains;
 
   public InsuranceSystem() {
     // Only this constructor can be used (if you need to initialise fields).\
@@ -31,7 +32,7 @@ public class InsuranceSystem {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(profile.size()), "s", ":");
 
-      for (int i = 0; i < Database.getSize(); i++) {
+      for (int i = 0; i < profile.size(); i++) {
         MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
             String.valueOf(i + 1), profile.get(i).getUserName(), profile.get(i).getAge());
       }
@@ -44,37 +45,40 @@ public class InsuranceSystem {
     userName = userName.toLowerCase();
     userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
 
-    Profile profile = new Profile(userName, age);
-
     boolean isInt = false;
 
     // Checks if an inputted age is an integer
     for (int i = 0; i < age.length(); i++) {
-      if (Character.isDigit(database.getAge().charAt(i))) {
+      if (Character.isDigit(age.charAt(i))) {
         isInt = true;
       }
     }
 
-    // Prints the message for when the database already contains the username
-    if (database.alreadyContains(userName)) {
+    for (int i = 0; i < profile.size(); i++) {
+      if (userName.equals(profile.get(i).getUserName())) alreadyContains = true;
+    }
 
-      MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(database.getUserName());
+    Profile newProfile = new Profile(userName, age);
+
+    // Prints the message for when the database already contains the username
+    if (alreadyContains) {
+
+      MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(newProfile.getUserName());
 
       // Prints the message for a username that is too short
-    } else if (database.getUserName().length() < 3) {
+    } else if (newProfile.getUserName().length() < 3) {
 
-      MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(database.getUserName());
+      MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(newProfile.getUserName());
 
-      // Prints the message for when a profile is created successfullt
-    } else if (isInt == true && Integer.valueOf(database.getAge()) >= 0) {
+      // Prints the message for when a profile is created successfully
+    } else if (isInt == true && Integer.valueOf(newProfile.getAge()) >= 0) {
 
-      database.addUserName();
-      database.addAge();
-      MessageCli.PROFILE_CREATED.printMessage(database.getUserName(), database.getAge());
+      profile.add(newProfile);
+      MessageCli.PROFILE_CREATED.printMessage(newProfile.getUserName(), newProfile.getAge());
 
       // Prints the message for an invalid age
     } else {
-      MessageCli.INVALID_AGE.printMessage(database.getAge(), database.getUserName());
+      MessageCli.INVALID_AGE.printMessage(newProfile.getAge(), newProfile.getUserName());
     }
   }
 
