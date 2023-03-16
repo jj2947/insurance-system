@@ -55,7 +55,11 @@ public class InsuranceSystem {
     }
 
     for (int i = 0; i < profile.size(); i++) {
-      if (userName.equals(profile.get(i).getUserName())) alreadyContains = true;
+      if (userName.equals(profile.get(i).getUserName())) {
+        alreadyContains = true;
+      } else {
+        alreadyContains = false;
+      }
     }
 
     Profile newProfile = new Profile(userName, age);
