@@ -412,7 +412,7 @@ public class MainTest {
           "-1",
           CREATE_PROFILE,
           "Tom",
-          "thirty",
+          "3hirty",
           CREATE_PROFILE,
           "Tim",
           "25",
@@ -423,7 +423,7 @@ public class MainTest {
           "'-1' is an invalid age, please provide a positive whole number only. No profile was"
               + " created for Jordan.");
       assertContains(
-          "'thirty' is an invalid age, please provide a positive whole number only. No profile was"
+          "'3hirty' is an invalid age, please provide a positive whole number only. No profile was"
               + " created for Tom.");
       assertDoesNotContain("jorDan");
       assertDoesNotContain("TOM");

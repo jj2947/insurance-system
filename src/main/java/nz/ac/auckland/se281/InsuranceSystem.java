@@ -5,8 +5,10 @@ import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
 
-  private ArrayList<Profile> profile = new ArrayList<Profile>();
+  // Creates an arraylist that stores profile instances
+  private ArrayList<Profile> database = new ArrayList<Profile>();
   private boolean alreadyContains;
+  private boolean isInt;
 
   public InsuranceSystem() {
     // Only this constructor can be used (if you need to initialise fields).\
@@ -16,25 +18,25 @@ public class InsuranceSystem {
   public void printDatabase() {
 
     // Prints the message for an empty database
-    if (profile.size() == 0) {
+    if (database.size() == 0) {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");
 
       // Prints the message for a database with one profile
-    } else if (profile.size() == 1) {
+    } else if (database.size() == 1) {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("1", ":", "");
       MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
-          "1", profile.get(0).getUserName(), profile.get(0).getAge());
+          "1", database.get(0).getUserName(), database.get(0).getAge());
 
       // Prints the message for a database with 3 or more profiles
     } else {
 
-      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(profile.size()), "s", ":");
+      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(database.size()), "s", ":");
 
-      for (int i = 0; i < profile.size(); i++) {
+      for (int i = 0; i < database.size(); i++) {
         MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
-            String.valueOf(i + 1), profile.get(i).getUserName(), profile.get(i).getAge());
+            String.valueOf(i + 1), database.get(i).getUserName(), database.get(i).getAge());
       }
     }
   }
@@ -45,23 +47,26 @@ public class InsuranceSystem {
     userName = userName.toLowerCase();
     userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
 
-    boolean isInt = false;
-
     // Checks if an inputted age is an integer
     for (int i = 0; i < age.length(); i++) {
       if (Character.isDigit(age.charAt(i))) {
         isInt = true;
+      } else {
+        isInt = false;
+        break;
       }
     }
 
-    for (int i = 0; i < profile.size(); i++) {
-      if (userName.equals(profile.get(i).getUserName())) {
+    // Checks if the database already contains the username
+    for (int i = 0; i < database.size(); i++) {
+      if (userName.equals(database.get(i).getUserName())) {
         alreadyContains = true;
       } else {
         alreadyContains = false;
       }
     }
 
+    // Makes a new instance of a profile
     Profile newProfile = new Profile(userName, age);
 
     // Prints the message for when the database already contains the username
@@ -74,10 +79,11 @@ public class InsuranceSystem {
 
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(newProfile.getUserName());
 
-      // Prints the message for when a profile is created successfully
+      // Prints the message for when a profile is created successfully and adds the profile
+      // instance to the profile arraylist
     } else if (isInt == true && Integer.valueOf(newProfile.getAge()) >= 0) {
 
-      profile.add(newProfile);
+      database.add(newProfile);
       MessageCli.PROFILE_CREATED.printMessage(newProfile.getUserName(), newProfile.getAge());
 
       // Prints the message for an invalid age
