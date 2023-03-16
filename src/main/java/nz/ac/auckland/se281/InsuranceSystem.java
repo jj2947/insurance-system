@@ -14,16 +14,19 @@ public class InsuranceSystem {
   // Implements the PRINT_DB command
   public void printDatabase() {
 
+    // Prints the message for an empty database
     if (Database.getSize() == 0) {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");
 
+      // Prints the message for a database with one profile
     } else if (Database.getSize() == 1) {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("1", ":", "");
       MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
           "1", database.getUserNames(0), database.getAges(0));
 
+      // Prints the message for a database with 3 or more profiles
     } else {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(Database.getSize()), "s", ":");
@@ -37,34 +40,41 @@ public class InsuranceSystem {
 
   public void createNewProfile(String userName, String age) {
 
+    // Makes sure the username is in title case
     userName = userName.toLowerCase();
     userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
 
+    // Sets the username and age in the Database class
     database.setUserName(userName);
     database.setAge(age);
 
     boolean isInt = false;
 
+    // Checks if an inputted age is an integer
     for (int i = 0; i < age.length(); i++) {
       if (Character.isDigit(database.getAge().charAt(i))) {
         isInt = true;
       }
     }
 
+    // Prints the message for when the database already contains the username
     if (database.alreadyContains(userName)) {
 
       MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(database.getUserName());
 
+      // Prints the message for a username that is too short
     } else if (database.getUserName().length() < 3) {
 
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(database.getUserName());
 
+      // Prints the message for when a profile is created successfullt
     } else if (isInt == true && Integer.valueOf(database.getAge()) >= 0) {
 
       database.addUserName();
       database.addAge();
       MessageCli.PROFILE_CREATED.printMessage(database.getUserName(), database.getAge());
 
+      // Prints the message for an invalid age
     } else {
       MessageCli.INVALID_AGE.printMessage(database.getAge(), database.getUserName());
     }

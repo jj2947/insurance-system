@@ -62,10 +62,12 @@ public class Database {
     return ages.get(indexPos);
   }
 
+  // Gets the size or how many profiles are in the database
   public static int getSize() {
     return size;
   }
 
+  // Checks if the database alredy has a usernme in it
   public boolean alreadyContains(String userName) {
     if (userNames.contains(userName) == true) {
       return true;
