@@ -1,11 +1,14 @@
 package nz.ac.auckland.se281;
 
 import nz.ac.auckland.se281.Main.PolicyType;
+import java.util.ArrayList;
 
 public class InsuranceSystem {
 
   // Creates a database instance
   private Database database = new Database();
+
+  private 
 
   public InsuranceSystem() {
     // Only this constructor can be used (if you need to initialise fields).\
@@ -44,6 +47,8 @@ public class InsuranceSystem {
     userName = userName.toLowerCase();
     userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
 
+    Profile profile = new Profile(userName, age);
+    
     // Sets the username and age in the Database class
     database.setUserName(userName);
     database.setAge(age);

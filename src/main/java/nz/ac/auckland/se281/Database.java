@@ -10,6 +10,7 @@ public class Database {
   // Creates the arraylist that will store all the ages for the profiles created
   private ArrayList<String> ages = new ArrayList<String>();
 
+  // Initialises the variables
   private String userName;
   private String age;
   private static int size;
@@ -21,12 +22,12 @@ public class Database {
     size = 0;
   }
 
-  // Method that returns the age of the profile
+  // Method that returns the age of the current profile
   public String getAge() {
     return age;
   }
 
-  // Method that returns the userName of the profile
+  // Method that returns the userName of the current profile
   public String getUserName() {
     return userName;
   }
@@ -62,7 +63,7 @@ public class Database {
     return ages.get(indexPos);
   }
 
-  // Gets the size or how many profiles are in the database
+  // Gets the size, which is how many profiles are in the database
   public static int getSize() {
     return size;
   }
