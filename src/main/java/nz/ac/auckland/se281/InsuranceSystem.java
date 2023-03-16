@@ -1,14 +1,11 @@
 package nz.ac.auckland.se281;
 
-import nz.ac.auckland.se281.Main.PolicyType;
 import java.util.ArrayList;
+import nz.ac.auckland.se281.Main.PolicyType;
 
 public class InsuranceSystem {
 
-  // Creates a database instance
-  private Database database = new Database();
-
-  private 
+  private ArrayList<Profile> profile = new ArrayList<Profile>();
 
   public InsuranceSystem() {
     // Only this constructor can be used (if you need to initialise fields).\
@@ -18,25 +15,25 @@ public class InsuranceSystem {
   public void printDatabase() {
 
     // Prints the message for an empty database
-    if (Database.getSize() == 0) {
+    if (profile.size() == 0) {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");
 
       // Prints the message for a database with one profile
-    } else if (Database.getSize() == 1) {
+    } else if (profile.size() == 1) {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("1", ":", "");
       MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
-          "1", database.getUserNames(0), database.getAges(0));
+          "1", profile.get(0).getUserName(), profile.get(0).getAge());
 
       // Prints the message for a database with 3 or more profiles
     } else {
 
-      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(Database.getSize()), "s", ":");
+      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(profile.size()), "s", ":");
 
       for (int i = 0; i < Database.getSize(); i++) {
         MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
-            String.valueOf(i + 1), database.getUserNames(i), database.getAges(i));
+            String.valueOf(i + 1), profile.get(i).getUserName(), profile.get(i).getAge());
       }
     }
   }
@@ -48,10 +45,6 @@ public class InsuranceSystem {
     userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
 
     Profile profile = new Profile(userName, age);
-    
-    // Sets the username and age in the Database class
-    database.setUserName(userName);
-    database.setAge(age);
 
     boolean isInt = false;
 
