@@ -34,6 +34,7 @@ public class InsuranceSystem {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(database.size()), "s", ":");
 
+      // Loops through the database arraylist to get the usernames and ages
       for (int i = 0; i < database.size(); i++) {
         MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
             String.valueOf(i + 1), database.get(i).getUserName(), database.get(i).getAge());
@@ -41,6 +42,7 @@ public class InsuranceSystem {
     }
   }
 
+  // Implements the CREATE_PROFILE command
   public void createNewProfile(String userName, String age) {
 
     // Makes sure the username is in title case
@@ -79,8 +81,8 @@ public class InsuranceSystem {
 
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(newProfile.getUserName());
 
-      // Prints the message for when a profile is created successfully and adds the profile
-      // instance to the profile arraylist
+      /* Prints the message for when a profile is created successfully and adds the profile
+      instance to the database arraylist*/
     } else if (isInt == true && Integer.valueOf(newProfile.getAge()) >= 0) {
 
       database.add(newProfile);
