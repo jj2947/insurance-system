@@ -6,9 +6,7 @@ import nz.ac.auckland.se281.Main.PolicyType;
 public class InsuranceSystem {
 
   // Creates an arraylist that stores profile instances
-  private ArrayList<Profile> database = new ArrayList<Profile>();
-  private boolean alreadyContains;
-  private boolean isInt;
+  private ArrayList<Profile> database = new ArrayList<>();
 
   public InsuranceSystem() {
     // Only this constructor can be used (if you need to initialise fields).\
@@ -45,11 +43,15 @@ public class InsuranceSystem {
   // Implements the CREATE_PROFILE command
   public void createNewProfile(String userName, String age) {
 
+    // Declares variables
+    boolean alreadyContains = false;
+    boolean isInt = false;
+
     // Makes sure the username is in title case
     userName = userName.toLowerCase();
     userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
 
-    // Checks if an inputted age is an integer
+    // Checks if an inputted age is an integer and assigns it to the vairble isInt
     for (int i = 0; i < age.length(); i++) {
       if (Character.isDigit(age.charAt(i))) {
         isInt = true;
@@ -59,12 +61,11 @@ public class InsuranceSystem {
       }
     }
 
-    // Checks if the database already contains the username
+    // Checks if the database already contains the username and assigns the boolean value to
+    // alreadyContains
     for (int i = 0; i < database.size(); i++) {
       if (userName.equals(database.get(i).getUserName())) {
         alreadyContains = true;
-      } else {
-        alreadyContains = false;
       }
     }
 
@@ -81,16 +82,16 @@ public class InsuranceSystem {
 
       MessageCli.INVALID_USERNAME_TOO_SHORT.printMessage(newProfile.getUserName());
 
+      // Prints the message for an invalid age
+    } else if (!isInt || Integer.parseInt(newProfile.getAge()) < 0) {
+
+      MessageCli.INVALID_AGE.printMessage(newProfile.getAge(), newProfile.getUserName());
+
       /* Prints the message for when a profile is created successfully and adds the profile
       instance to the database arraylist*/
-    } else if (isInt == true && Integer.valueOf(newProfile.getAge()) >= 0) {
-
+    } else {
       database.add(newProfile);
       MessageCli.PROFILE_CREATED.printMessage(newProfile.getUserName(), newProfile.getAge());
-
-      // Prints the message for an invalid age
-    } else {
-      MessageCli.INVALID_AGE.printMessage(newProfile.getAge(), newProfile.getUserName());
     }
   }
 
