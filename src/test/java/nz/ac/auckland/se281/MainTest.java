@@ -408,22 +408,22 @@ public class MainTest {
       // Write your own test here, in the same format as the other tests.
       runCommands(
           CREATE_PROFILE,
-          "Jordan",
-          "-1",
+          "jorDan",
+          "-10",
           CREATE_PROFILE,
-          "Tom",
-          "3hirty",
+          "TOM",
+          "3hi3ty",
           CREATE_PROFILE,
-          "Tim",
+          "TiM",
           "25",
           PRINT_DB);
       assertContains("Database has 1 profile:");
       assertContains("1: Tim, 25");
       assertContains(
-          "'-1' is an invalid age, please provide a positive whole number only. No profile was"
+          "'-10' is an invalid age, please provide a positive whole number only. No profile was"
               + " created for Jordan.");
       assertContains(
-          "'3hirty' is an invalid age, please provide a positive whole number only. No profile was"
+          "'3hi3ty' is an invalid age, please provide a positive whole number only. No profile was"
               + " created for Tom.");
       assertDoesNotContain("jorDan");
       assertDoesNotContain("TOM");
