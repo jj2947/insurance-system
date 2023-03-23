@@ -14,7 +14,7 @@ import org.junit.runners.Suite.SuiteClasses;
   MainTest.Task1.class,
   // MainTest.Task2.class, // Uncomment this line when to start Task 2
   // MainTest.Task3.class, // Uncomment this line when to start Task 3
-  // MainTest.YourTests.class, // Uncomment this line to run your own tests
+  MainTest.YourTests.class, // Uncomment this line to run your own tests
 })
 public class MainTest {
   public static class Task1 extends CliTest {
@@ -449,6 +449,32 @@ public class MainTest {
           "'-1' is an invalid age, please provide a positive whole number only. No profile was"
               + " created for Jordan.");
       assertContains("Usernames must be unique. No profile was created for 'Tim'.");
+      assertDoesNotContain("jorDan");
+      assertDoesNotContain("TiM");
+    }
+
+    @Test
+    public void TY_04_your_own_test() throws Exception {
+      // Write your own test here, in the same format as the other tests.
+      runCommands(
+          CREATE_PROFILE,
+          "Jordan",
+          "-1",
+          CREATE_PROFILE,
+          "TiM",
+          "-5",
+          CREATE_PROFILE,
+          "Tim",
+          "25",
+          PRINT_DB);
+      assertContains("Database has 1 profile:");
+      assertContains("1: Tim, 25");
+      assertContains(
+          "'-1' is an invalid age, please provide a positive whole number only. No profile was"
+              + " created for Jordan.");
+      assertContains(
+          "'-5' is an invalid age, please provide a positive whole number only. No profile was"
+              + " created for Tim.");
       assertDoesNotContain("jorDan");
       assertDoesNotContain("TiM");
     }
