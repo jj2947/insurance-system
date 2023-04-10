@@ -70,7 +70,7 @@ public class InsuranceSystem {
     }
 
     // Makes a new instance of a profile
-    Profile newProfile = new Profile(userName, age);
+    Profile newProfile = new Profile(userName, age, false);
 
     // Prints the message for when the database already contains the username
     if (alreadyContains) {
@@ -96,7 +96,17 @@ public class InsuranceSystem {
   }
 
   public void loadProfile(String userName) {
-    // TODO: Complete this method.
+
+    // Makes sure the username is in title case
+    userName = userName.toLowerCase();
+    userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
+
+
+    for (int i = 0; i < database.size(); i++) {
+      if (userName.equals(database.get(i).getUserName())) {
+        database.get(i).setLoadStatus(true);
+      }
+    }
   }
 
   public void unloadProfile() {
