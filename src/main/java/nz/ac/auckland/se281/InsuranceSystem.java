@@ -26,10 +26,11 @@ public class InsuranceSystem {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("1", ":", "");
 
       if (database.get(0).getLoadStatus() == false) {
-      MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
-          "1", database.get(0).getUserName(), database.get(0).getAge());
+        MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
+            "1", database.get(0).getUserName(), database.get(0).getAge());
       } else {
-        MessageCli.PRINT_DB_PROFILE_HEADER_SHORT.printMessage("***", "1", database.get(0).getUserName(), database.get(0).getAge());
+        MessageCli.PRINT_DB_PROFILE_HEADER_SHORT.printMessage(
+            "***", "1", database.get(0).getUserName(), database.get(0).getAge());
       }
 
       // Prints the message for a database with 3 or more profiles
@@ -39,8 +40,17 @@ public class InsuranceSystem {
 
       // Loops through the database arraylist to get the usernames and ages
       for (int i = 0; i < database.size(); i++) {
-        MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
-            String.valueOf(i + 1), database.get(i).getUserName(), database.get(i).getAge());
+
+        if (database.get(i).getLoadStatus() == false) {
+          MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
+              String.valueOf(i + 1), database.get(i).getUserName(), database.get(i).getAge());
+        } else {
+          MessageCli.PRINT_DB_PROFILE_HEADER_SHORT.printMessage(
+              "***",
+              String.valueOf(i + 1),
+              database.get(i).getUserName(),
+              database.get(0).getAge());
+        }
       }
     }
   }
