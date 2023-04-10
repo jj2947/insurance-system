@@ -30,7 +30,7 @@ public class InsuranceSystem {
             "1", database.get(0).getUserName(), database.get(0).getAge());
       } else {
         MessageCli.PRINT_DB_PROFILE_HEADER_SHORT.printMessage(
-            "***", "1", database.get(0).getUserName(), database.get(0).getAge());
+            "*** ", "1", database.get(0).getUserName(), database.get(0).getAge());
       }
 
       // Prints the message for a database with 3 or more profiles
@@ -47,10 +47,10 @@ public class InsuranceSystem {
               String.valueOf(i + 1), database.get(i).getUserName(), database.get(i).getAge());
         } else {
           MessageCli.PRINT_DB_PROFILE_HEADER_SHORT.printMessage(
-              "***",
+              "*** ",
               String.valueOf(i + 1),
               database.get(i).getUserName(),
-              database.get(0).getAge());
+              database.get(i).getAge());
         }
       }
     }
@@ -130,13 +130,17 @@ public class InsuranceSystem {
     // Prints the success or failure messages for loading a profile
     for (int i = 0; i < database.size(); i++) {
 
-      // If a profile is in the database, it will be successfully loaded
+      // If a profile is in the database, it will be successfully loaded and if there is an already
+      // loaded profile
+      // that profile will be unloaded
       if (userName.equals(database.get(i).getUserName())) {
+        unloadProfile();
         database.get(i).setLoadStatus(true);
         MessageCli.PROFILE_LOADED.printMessage(userName);
+        break;
 
         // If a profile can't be found in the database, it won't be successfully loaded
-      } else {
+      } else if (i == database.size() - 1) {
         MessageCli.NO_PROFILE_FOUND_TO_LOAD.printMessage(userName);
       }
     }
@@ -153,6 +157,7 @@ public class InsuranceSystem {
 
     if (loadedProfile != null) {
       MessageCli.PROFILE_UNLOADED.printMessage(loadedProfile.getUserName());
+      loadedProfile.setLoadStatus(false);
     } else {
       MessageCli.NO_PROFILE_LOADED.printMessage();
     }
