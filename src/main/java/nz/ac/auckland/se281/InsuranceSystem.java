@@ -41,6 +41,7 @@ public class InsuranceSystem {
       // Loops through the database arraylist to get the usernames and ages
       for (int i = 0; i < database.size(); i++) {
 
+        // If profile is loaded, print the *** infront of it
         if (database.get(i).getLoadStatus() == false) {
           MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
               String.valueOf(i + 1), database.get(i).getUserName(), database.get(i).getAge());
@@ -61,6 +62,7 @@ public class InsuranceSystem {
     // Declares variables
     boolean alreadyContains = false;
     boolean isInt = false;
+    Profile loadedProfile = null;
 
     // Makes sure the username is in title case
     userName = userName.toLowerCase();
@@ -82,13 +84,22 @@ public class InsuranceSystem {
       if (userName.equals(database.get(i).getUserName())) {
         alreadyContains = true;
       }
+
+      if (database.get(i).getLoadStatus() == true) {
+        loadedProfile = database.get(i);
+      }
     }
 
     // Makes a new instance of a profile
     Profile newProfile = new Profile(userName, age, false);
 
-    // Prints the message for when the database already contains the username
-    if (alreadyContains) {
+    // Prints message for when a profile is already loaded
+    if (loadedProfile != null) {
+
+      MessageCli.CANNOT_CREATE_WHILE_LOADED.printMessage(loadedProfile.getUserName());
+
+      // Prints the message for when the database already contains the username
+    } else if (alreadyContains) {
 
       MessageCli.INVALID_USERNAME_NOT_UNIQUE.printMessage(newProfile.getUserName());
 
