@@ -164,15 +164,24 @@ public class InsuranceSystem {
   }
 
   public void deleteProfile(String userName) {
+
+    // Makes sure the username is in title case
+    userName = userName.toLowerCase();
+    userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
+
     for (Profile profile : database) {
       if (userName.equals(profile.getUserName())) {
+
         if (profile.getLoadStatus() == true) {
           MessageCli.CANNOT_DELETE_PROFILE_WHILE_LOADED.printMessage(userName);
+          return;
+
+        } else {
+
+          MessageCli.PROFILE_DELETED.printMessage(userName);
           database.remove(profile);
           return;
-        } else {
-          MessageCli.PROFILE_DELETED.printMessage(userName);
-          return;
+
         }
       }
       MessageCli.NO_PROFILE_FOUND_TO_DELETE.printMessage(userName);
