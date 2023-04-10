@@ -143,7 +143,13 @@ public class InsuranceSystem {
   }
 
   public void unloadProfile() {
-    // TODO: Complete this method.
+    Profile loadedProfile = null;
+
+    for (Profile profile : database) {
+      if (profile.getLoadStatus() == true) {
+        loadedProfile = profile;
+      }
+    }
   }
 
   public void deleteProfile(String userName) {
