@@ -121,6 +121,7 @@ public class InsuranceSystem {
     }
   }
 
+  // Implements the LOAD_PROFILE command
   public void loadProfile(String userName) {
 
     // Makes sure the username is in title case
@@ -130,60 +131,74 @@ public class InsuranceSystem {
     // Prints the success or failure messages for loading a profile
     for (int i = 0; i < database.size(); i++) {
 
-      // If a profile is in the database, it will be successfully loaded and if there is an already
-      // loaded profile
-      // that profile will be unloaded
+      // If a profile is in the database, it will be successfully loaded and a success message will
+      // be printedif there is an already loaded profile that profile will be unloaded
       if (userName.equals(database.get(i).getUserName())) {
         unloadProfile();
         database.get(i).setLoadStatus(true);
         MessageCli.PROFILE_LOADED.printMessage(userName);
         break;
 
-        // If a profile can't be found in the database, it won't be successfully loaded
+        // If a profile can't be found in the database, it won't be successfully loaded and the
+        // failure message will be printed
       } else if (i == database.size() - 1) {
         MessageCli.NO_PROFILE_FOUND_TO_LOAD.printMessage(userName);
       }
     }
   }
 
+  // Implements the UNLOAD_PROFILE command
   public void unloadProfile() {
+
+    // Declares loadedProfile as Profile type
     Profile loadedProfile = null;
 
+    // Sets loadedProfile to a profile in hte database arraylistif that profile is currently loaded
     for (Profile profile : database) {
       if (profile.getLoadStatus() == true) {
         loadedProfile = profile;
       }
     }
 
+    // If there is a loadedProfile in the databse arraylist, it is unloaded and the unloaded message
+    // is printed
     if (loadedProfile != null) {
       MessageCli.PROFILE_UNLOADED.printMessage(loadedProfile.getUserName());
       loadedProfile.setLoadStatus(false);
+
+      // If there is no loaded profile, then the no profile loaded message is printed
     } else {
       MessageCli.NO_PROFILE_LOADED.printMessage();
     }
   }
 
+  // Implements the DELETE_PROFILE command
   public void deleteProfile(String userName) {
 
     // Makes sure the username is in title case
     userName = userName.toLowerCase();
     userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
 
+    // Checks to see if the username is in the profiles database
     for (Profile profile : database) {
       if (userName.equals(profile.getUserName())) {
 
+        // Cannot delete profile when loaded
         if (profile.getLoadStatus() == true) {
+
           MessageCli.CANNOT_DELETE_PROFILE_WHILE_LOADED.printMessage(userName);
           return;
 
+          // If the profile is not loaded and is in the database, it is deleted
         } else {
 
           MessageCli.PROFILE_DELETED.printMessage(userName);
           database.remove(profile);
           return;
-
         }
       }
+
+      // If the profile is not in the database, the no profile to delete message is printed
       MessageCli.NO_PROFILE_FOUND_TO_DELETE.printMessage(userName);
     }
   }
