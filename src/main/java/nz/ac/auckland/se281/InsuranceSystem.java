@@ -150,6 +150,12 @@ public class InsuranceSystem {
         loadedProfile = profile;
       }
     }
+
+    if (loadedProfile != null) {
+      MessageCli.PROFILE_UNLOADED.printMessage(loadedProfile.getUserName());
+    } else {
+      MessageCli.NO_PROFILE_LOADED.printMessage();
+    }
   }
 
   public void deleteProfile(String userName) {
