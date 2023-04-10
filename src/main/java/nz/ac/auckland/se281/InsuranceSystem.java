@@ -164,7 +164,19 @@ public class InsuranceSystem {
   }
 
   public void deleteProfile(String userName) {
-    // TODO: Complete this method.
+    for (Profile profile : database) {
+      if (userName.equals(profile.getUserName())) {
+        if (profile.getLoadStatus() == true) {
+          MessageCli.CANNOT_DELETE_PROFILE_WHILE_LOADED.printMessage(userName);
+          database.remove(profile);
+          return;
+        } else {
+          MessageCli.PROFILE_DELETED.printMessage(userName);
+          return;
+        }
+      }
+      MessageCli.NO_PROFILE_FOUND_TO_DELETE.printMessage(userName);
+    }
   }
 
   public void createPolicy(PolicyType type, String[] options) {
