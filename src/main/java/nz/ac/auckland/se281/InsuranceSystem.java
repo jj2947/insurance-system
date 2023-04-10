@@ -24,8 +24,13 @@ public class InsuranceSystem {
     } else if (database.size() == 1) {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("1", ":", "");
+
+      if (database.get(0).getLoadStatus() == false) {
       MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
           "1", database.get(0).getUserName(), database.get(0).getAge());
+      } else {
+        MessageCli.PRINT_DB_PROFILE_HEADER_SHORT.printMessage("***", "1", database.get(0).getUserName(), database.get(0).getAge());
+      }
 
       // Prints the message for a database with 3 or more profiles
     } else {
@@ -101,10 +106,17 @@ public class InsuranceSystem {
     userName = userName.toLowerCase();
     userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
 
-
+    // Prints the success or failure messages for loading a profile
     for (int i = 0; i < database.size(); i++) {
+
+      // If a profile is in the database, it will be successfully loaded
       if (userName.equals(database.get(i).getUserName())) {
         database.get(i).setLoadStatus(true);
+        MessageCli.PROFILE_LOADED.printMessage(userName);
+
+        // If a profile can't be found in the database, it won't be successfully loaded
+      } else {
+        MessageCli.NO_PROFILE_FOUND_TO_LOAD.printMessage(userName);
       }
     }
   }
