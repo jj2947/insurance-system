@@ -145,7 +145,7 @@ public class InsuranceSystem {
     }
 
     // Makes a new instance of a profile
-    Profile newProfile = new Profile(userName, age, false, null);
+    Profile newProfile = new Profile(userName, age, false);
 
     // Prints message for when a profile is already loaded
     if (loadedProfile != null) {

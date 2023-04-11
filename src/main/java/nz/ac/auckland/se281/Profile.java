@@ -1,6 +1,7 @@
 package nz.ac.auckland.se281;
 
 import java.util.ArrayList;
+import nz.ac.auckland.se281.Main.PolicyType;
 
 // Profile class which creates instances of a profile
 public class Profile {
@@ -10,14 +11,12 @@ public class Profile {
   private String age;
   private boolean loadStatus;
   private ArrayList<Policy> policies = new ArrayList<>();
-  private Policy policy;
 
   // Constructor which initialises userName and age vaariables
-  public Profile(String userName, String age, boolean loadStatus,  Policy policy) {
+  public Profile(String userName, String age, boolean loadStatus) {
     this.userName = userName;
     this.age = age;
     this.loadStatus = loadStatus;
-    this.policy = policy;
   }
 
   // Gets the username of a profile instance
@@ -50,5 +49,17 @@ public class Profile {
 
   public ArrayList<Policy> getPolicies() {
     return policies;
+  }
+
+  public void printPolicies() {
+    for (Policy policy : policies) {
+      if (policy.getPolicyType() == PolicyType.CAR) {
+        CarPolicy carPolicy = (CarPolicy) policy;
+        MessageCli.PRINT_DB_CAR_POLICY.printMessage(
+            carPolicy.getMakeAndModel(),
+            String.valueOf(carPolicy.getSumInsured()),
+            String.valueOf(carPolicy.getBasePremium()));
+      }
+    }
   }
 }
