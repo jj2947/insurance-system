@@ -91,7 +91,7 @@ public class InsuranceSystem {
     }
 
     // Makes a new instance of a profile
-    Profile newProfile = new Profile(userName, age, false, 0);
+    Profile newProfile = new Profile(userName, age, false, 0, null);
 
     // Prints message for when a profile is already loaded
     if (loadedProfile != null) {
@@ -229,7 +229,11 @@ public class InsuranceSystem {
       if (age > 100) {
         MessageCli.OVER_AGE_LIMIT_LIFE_POLICY.printMessage(userName);
         return;
-      } else if ()
+      } else if () {
+        MessageCli.ALREADY_HAS_LIFE_POLICY.printMessage(userName);
+        return;
+      }
+
       LifePolicy lifePolicy = new LifePolicy(options, age);
       break;
 
