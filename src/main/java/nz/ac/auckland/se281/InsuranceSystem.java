@@ -225,6 +225,7 @@ public class InsuranceSystem {
       case HOME:
         HomePolicy homePolicy = new HomePolicy(options);
         loadedProfile.getPolicies().add(homePolicy);
+        MessageCli.NEW_POLICY_CREATED.printMessage(homePolicy.getPolicyType().toString(), loadedProfile.getUserName());
         break;
 
       case LIFE:
@@ -241,11 +242,13 @@ public class InsuranceSystem {
 
         LifePolicy lifePolicy = new LifePolicy(options, age);
         loadedProfile.getPolicies().add(lifePolicy);
+        MessageCli.NEW_POLICY_CREATED.printMessage(lifePolicy.getPolicyType().toString(), loadedProfile.getUserName());
         break;
 
       case CAR:
         CarPolicy carPolicy = new CarPolicy(options, age);
         loadedProfile.getPolicies().add(carPolicy);
+        MessageCli.NEW_POLICY_CREATED.printMessage(carPolicy.getPolicyType().toString(), loadedProfile.getUserName());
         break;
     }
   }
