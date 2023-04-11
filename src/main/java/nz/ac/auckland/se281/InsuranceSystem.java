@@ -28,37 +28,46 @@ public class InsuranceSystem {
       if (database.get(0).getLoadStatus() == false) {
 
         if (database.get(0).getNumPolicies() == 1) {
-          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+          MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
               "",
               "1",
               database.get(0).getUserName(),
               database.get(0).getAge(),
               String.valueOf(database.get(0).getNumPolicies()),
-              "y");
+              "y",
+              String.valueOf(database.get(0).getTotalPrice()));
           database.get(0).printPolicies();
         } else {
-          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+          MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
               "",
               "1",
               database.get(0).getUserName(),
               database.get(0).getAge(),
               String.valueOf(database.get(0).getNumPolicies()),
-              "ies");
+              "ies",
+              String.valueOf(database.get(0).getTotalPrice()));
           database.get(0).printPolicies();
         }
 
       } else {
         if (database.get(0).getNumPolicies() == 1) {
-          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
-              "*** ", "1", database.get(0).getUserName(), database.get(0).getAge(), "1", "y");
+          MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
+              "*** ",
+              "1",
+              database.get(0).getUserName(),
+              database.get(0).getAge(),
+              "1",
+              "y",
+              String.valueOf(database.get(0).getTotalPrice()));
         } else {
-          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+          MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
               "*** ",
               "1",
               database.get(0).getUserName(),
               database.get(0).getAge(),
               String.valueOf(database.get(0).getNumPolicies()),
-              "ies");
+              "ies",
+              String.valueOf(database.get(0).getTotalPrice()));
         }
       }
 
@@ -73,42 +82,46 @@ public class InsuranceSystem {
         // If profile is loaded, print the *** infront of it
         if (database.get(i).getLoadStatus() == true) {
           if (database.get(i).getNumPolicies() == 1) {
-            MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+            MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
                 "*** ",
                 String.valueOf(i + 1),
                 database.get(i).getUserName(),
                 database.get(i).getAge(),
                 String.valueOf(database.get(i).getNumPolicies()),
-                "y");
+                "y",
+                String.valueOf(database.get(i).getTotalPrice()));
             database.get(i).printPolicies();
           } else {
-            MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+            MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
                 "*** ",
                 String.valueOf(i + 1),
                 database.get(i).getUserName(),
                 database.get(i).getAge(),
                 String.valueOf(database.get(i).getNumPolicies()),
-                "ies");
+                "ies",
+                String.valueOf(database.get(i).getTotalPrice()));
             database.get(i).printPolicies();
           }
         } else {
           if (database.get(i).getNumPolicies() == 1) {
-            MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+            MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
                 "",
                 String.valueOf(i + 1),
                 database.get(i).getUserName(),
                 database.get(i).getAge(),
                 String.valueOf(database.get(i).getNumPolicies()),
-                "y");
+                "y",
+                String.valueOf(database.get(i).getTotalPrice()));
             database.get(i).printPolicies();
           } else {
-            MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+            MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
                 "",
                 String.valueOf(i + 1),
                 database.get(i).getUserName(),
                 database.get(i).getAge(),
                 String.valueOf(database.get(i).getNumPolicies()),
-                "ies");
+                "ies",
+                String.valueOf(database.get(i).getTotalPrice()));
             database.get(i).printPolicies();
           }
         }

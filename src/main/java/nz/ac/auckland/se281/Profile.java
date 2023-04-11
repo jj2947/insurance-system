@@ -51,6 +51,14 @@ public class Profile {
     return policies;
   }
 
+  public int getTotalPrice() {
+    int total = 0;
+    for (Policy policy : policies) {
+      total += policy.getDiscountedPremium(policies.size());
+    }
+    return total;
+  }
+
   public void printPolicies() {
     for (Policy policy : policies) {
       if (policy.getPolicyType() == PolicyType.CAR) {
