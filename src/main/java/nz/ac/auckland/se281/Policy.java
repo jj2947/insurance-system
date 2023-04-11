@@ -22,4 +22,18 @@ public abstract class Policy {
 
   public abstract int getBasePremium();
   
+  public int getDiscountedPremium(int numPolicies) {
+
+    int discountedPremium = getBasePremium();
+
+    if (numPolicies== 2) {
+
+        discountedPremium = (int) (discountedPremium * 0.9);
+
+    } else if (numPolicies >= 3) {
+
+        discountedPremium = (int) (discountedPremium * 0.8);
+    }
+    return discountedPremium;
+  }
 }

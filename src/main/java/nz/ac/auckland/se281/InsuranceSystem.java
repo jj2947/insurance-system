@@ -44,7 +44,7 @@ public class InsuranceSystem {
               database.get(0).getAge(),
               String.valueOf(database.get(0).getNumPolicies()),
               "ies");
-              database.get(0).printPolicies();
+          database.get(0).printPolicies();
         }
 
       } else {
@@ -80,7 +80,7 @@ public class InsuranceSystem {
                 database.get(i).getAge(),
                 String.valueOf(database.get(i).getNumPolicies()),
                 "y");
-                database.get(i).printPolicies();
+            database.get(i).printPolicies();
           } else {
             MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
                 "*** ",
@@ -89,7 +89,7 @@ public class InsuranceSystem {
                 database.get(i).getAge(),
                 String.valueOf(database.get(i).getNumPolicies()),
                 "ies");
-                database.get(i).printPolicies();
+            database.get(i).printPolicies();
           }
         } else {
           if (database.get(i).getNumPolicies() == 1) {
@@ -98,18 +98,18 @@ public class InsuranceSystem {
                 String.valueOf(i + 1),
                 database.get(i).getUserName(),
                 database.get(i).getAge(),
-                String.valueOf(database.get(0).getNumPolicies()),
+                String.valueOf(database.get(i).getNumPolicies()),
                 "y");
-                database.get(i).printPolicies();
+            database.get(i).printPolicies();
           } else {
             MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
                 "",
                 String.valueOf(i + 1),
                 database.get(i).getUserName(),
                 database.get(i).getAge(),
-                String.valueOf(database.get(0).getNumPolicies()),
+                String.valueOf(database.get(i).getNumPolicies()),
                 "ies");
-                database.get(i).printPolicies();
+            database.get(i).printPolicies();
           }
         }
       }
