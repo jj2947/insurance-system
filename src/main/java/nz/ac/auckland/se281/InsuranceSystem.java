@@ -59,6 +59,8 @@ public class InsuranceSystem {
               "1",
               "y",
               String.valueOf(database.get(0).getTotalPrice()));
+              database.get(0).printPolicies();
+
         } else {
           MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
               "*** ",
@@ -68,6 +70,7 @@ public class InsuranceSystem {
               String.valueOf(database.get(0).getNumPolicies()),
               "ies",
               String.valueOf(database.get(0).getTotalPrice()));
+              database.get(0).printPolicies();
         }
       }
 
@@ -91,6 +94,7 @@ public class InsuranceSystem {
                 "y",
                 String.valueOf(database.get(i).getTotalPrice()));
             database.get(i).printPolicies();
+
           } else {
             MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
                 "*** ",
@@ -102,6 +106,7 @@ public class InsuranceSystem {
                 String.valueOf(database.get(i).getTotalPrice()));
             database.get(i).printPolicies();
           }
+
         } else {
           if (database.get(i).getNumPolicies() == 1) {
             MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
@@ -113,6 +118,7 @@ public class InsuranceSystem {
                 "y",
                 String.valueOf(database.get(i).getTotalPrice()));
             database.get(i).printPolicies();
+
           } else {
             MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
                 "",
