@@ -6,8 +6,8 @@ public class HomePolicy extends Policy {
   private String address;
   private boolean rental;
 
-  public HomePolicy(PolicyType type, String[] options) {
-    super(type, options);
+  public HomePolicy(String[] options) {
+    super(PolicyType.HOME, options);
     address = options[1];
 
     if (options[2].equals("yes")) {

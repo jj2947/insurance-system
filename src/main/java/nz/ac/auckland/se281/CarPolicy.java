@@ -1,4 +1,5 @@
 package nz.ac.auckland.se281;
+import nz.ac.auckland.se281.Main.PolicyType;
 
 public class CarPolicy extends Policy {
 
@@ -9,7 +10,7 @@ public class CarPolicy extends Policy {
   private int basePremium;
 
   public CarPolicy(String[] options, int age) {
-    super("Car", options);
+    super(PolicyType.CAR, options);
 
     makeAndModel = options[1];
     licensePlate = options[2];

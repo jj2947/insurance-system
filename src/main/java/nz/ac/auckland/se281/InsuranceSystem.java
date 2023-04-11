@@ -222,32 +222,31 @@ public class InsuranceSystem {
     }
 
     switch (type) {
-
       case HOME:
-      HomePolicy homePolicy = new HomePolicy(options);
-      break;
+        HomePolicy homePolicy = new HomePolicy(options);
+        loadedProfile.getPolicies().add(homePolicy);
+        break;
 
       case LIFE:
-      for (Policy policy: loadedProfile.getPolicies()) {
-        if (policy.getPolicyType() == LIFE) {
-          
+        for (Policy policy : loadedProfile.getPolicies()) {
+          if (policy.getPolicyType() == PolicyType.LIFE) {
+            MessageCli.ALREADY_HAS_LIFE_POLICY.printMessage(userName);
+            return;
+          }
         }
-      }
-      if (age > 100) {
-        MessageCli.OVER_AGE_LIMIT_LIFE_POLICY.printMessage(userName);
-        return;
-      } else if () {
-        MessageCli.ALREADY_HAS_LIFE_POLICY.printMessage(userName);
-        return;
-      }
+        if (age > 100) {
+          MessageCli.OVER_AGE_LIMIT_LIFE_POLICY.printMessage(userName);
+          return;
+        }
 
-      LifePolicy lifePolicy = new LifePolicy(options, age);
-      break;
+        LifePolicy lifePolicy = new LifePolicy(options, age);
+        loadedProfile.getPolicies().add(lifePolicy);
+        break;
 
       case CAR:
-      CarPolicy carPolicy = new CarPolicy(options, age);
-      break;
-
+        CarPolicy carPolicy = new CarPolicy(options, age);
+        loadedProfile.getPolicies().add(carPolicy);
+        break;
     }
   }
 }
