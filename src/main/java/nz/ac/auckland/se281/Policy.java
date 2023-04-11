@@ -20,9 +20,4 @@ public abstract class Policy {
     }
 
     public abstract int getBasePremium();
-
-    @Override
-    public String toString() {
-        return "+type+".toLowerCase();
-    }
 }
