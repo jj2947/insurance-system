@@ -204,6 +204,16 @@ public class InsuranceSystem {
   }
 
   public void createPolicy(PolicyType type, String[] options) {
-    // TODO: Complete this method.
+
+    for (Profile profile : database) {
+      if (profile.getLoadStatus() == true) {
+        break;
+      } else if (profile == database.get(database.size() - 1)) {
+        MessageCli.NO_PROFILE_FOUND_TO_CREATE_POLICY.printMessage();
+        return;
+      }
+    }
+
+    
   }
 }
