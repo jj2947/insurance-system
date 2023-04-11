@@ -30,9 +30,9 @@ public class CarPolicy extends Policy {
   @Override
   public int getBasePremium() {
     if (age < 25) {
-      basePremium = (15 / 100) * sumInusred;
+      basePremium = (int)(0.15 * sumInusred);
     } else {
-      basePremium = (10 / 100) * sumInusred;
+      basePremium = (int)(0.10 * sumInusred);
     }
 
     if (mechanicalBreakdown) {

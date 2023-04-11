@@ -51,6 +51,30 @@ public class Profile {
     return policies;
   }
 
+  public int getDiscountedPremium() {
+
+    int totalPremium = 0;
+
+    if (getNumPolicies() == 2) {
+
+      totalPremium = policies.get(0).getBasePremium() + policies.get(1).getBasePremium();
+      totalPremium = (int) (totalPremium * 0.9);
+
+    } else if (getNumPolicies() >= 3) {
+
+      for (Policy policy : policies) {
+        totalPremium += policy.getBasePremium();
+      }
+      totalPremium = (int) (totalPremium * 0.8);
+
+    } else {
+      for (Policy policy : policies) {
+        totalPremium += policy.getBasePremium();
+      }
+    }
+    return totalPremium;
+  }
+
   public void printPolicies() {
     for (Policy policy : policies) {
       if (policy.getPolicyType() == PolicyType.CAR) {
@@ -58,8 +82,9 @@ public class Profile {
         MessageCli.PRINT_DB_CAR_POLICY.printMessage(
             carPolicy.getMakeAndModel(),
             String.valueOf(carPolicy.getSumInsured()),
-            String.valueOf(carPolicy.getBasePremium()));
-      }
+            String.valueOf(carPolicy.getBasePremium()),
+            String.valueOf(getDiscountedPremium()));
+      } else if 
     }
   }
 }
