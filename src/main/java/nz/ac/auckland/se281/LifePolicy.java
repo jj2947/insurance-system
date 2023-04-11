@@ -7,10 +7,14 @@ public class LifePolicy extends Policy {
 
   public LifePolicy(String[] options, int age) {
     super(PolicyType.LIFE, options);
+    this.age = age;
   }
 
   @Override
   public int getBasePremium() {
-    return ((1 + age / 100) / 100) * sumInusred;
+    float Age = (float)(age);
+    float basePremium = ((1+Age/100))*sumInusred;
+    int premium = (int) (basePremium);
+    return premium;
   }
 }

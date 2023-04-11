@@ -27,9 +27,9 @@ public class HomePolicy extends Policy {
     int basePremium;
 
     if (rental) {
-        basePremium = (2/100)*sumInusred;
+        basePremium = (int)(0.02*sumInusred);
     } else {
-        basePremium = (1/100)*sumInusred;
+        basePremium = (int)(0.01*sumInusred);
     }
 
     return basePremium;
