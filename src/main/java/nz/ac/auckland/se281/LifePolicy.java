@@ -5,7 +5,7 @@ public class LifePolicy extends Policy {
   private int age;
 
   public LifePolicy(String[] options, int age) {
-    super(options);
+    super("Life", options);
   }
 
   @Override

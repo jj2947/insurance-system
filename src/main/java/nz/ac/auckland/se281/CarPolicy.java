@@ -9,7 +9,7 @@ public class CarPolicy extends Policy {
   private int basePremium;
 
   public CarPolicy(String[] options, int age) {
-    super(options);
+    super("Car", options);
 
     makeAndModel = options[1];
     licensePlate = options[2];

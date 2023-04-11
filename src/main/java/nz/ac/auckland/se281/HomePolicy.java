@@ -1,12 +1,13 @@
 package nz.ac.auckland.se281;
+import nz.ac.auckland.se281.Main.PolicyType;
 
 public class HomePolicy extends Policy {
 
   private String address;
   private boolean rental;
 
-  public HomePolicy(String[] options) {
-    super(options);
+  public HomePolicy(PolicyType type, String[] options) {
+    super(type, options);
     address = options[1];
 
     if (options[2].equals("yes")) {

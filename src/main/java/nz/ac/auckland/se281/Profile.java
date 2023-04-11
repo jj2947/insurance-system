@@ -49,4 +49,8 @@ public class Profile {
   public void addPolicy(Policy policy) {
     policies.add(policy);
   }
+
+  public ArrayList<Policy> getPolicies() {
+    return policies;
+  }
 }

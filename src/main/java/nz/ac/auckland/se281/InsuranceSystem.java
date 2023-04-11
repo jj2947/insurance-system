@@ -207,11 +207,13 @@ public class InsuranceSystem {
 
     int age = 0;
     String userName = null;
+    Profile loadedProfile = null;
 
     for (Profile profile : database) {
       if (profile.getLoadStatus() == true) {
         age = Integer.parseInt(profile.getAge());
         userName = profile.getUserName();
+        loadedProfile = profile;
         break;
       } else if (profile == database.get(database.size() - 1)) {
         MessageCli.NO_PROFILE_FOUND_TO_CREATE_POLICY.printMessage();
@@ -226,6 +228,11 @@ public class InsuranceSystem {
       break;
 
       case LIFE:
+      for (Policy policy: loadedProfile.getPolicies()) {
+        if (policy.getPolicyType() == LIFE) {
+          
+        }
+      }
       if (age > 100) {
         MessageCli.OVER_AGE_LIMIT_LIFE_POLICY.printMessage(userName);
         return;
