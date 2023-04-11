@@ -91,7 +91,7 @@ public class InsuranceSystem {
     }
 
     // Makes a new instance of a profile
-    Profile newProfile = new Profile(userName, age, false);
+    Profile newProfile = new Profile(userName, age, false, 0);
 
     // Prints message for when a profile is already loaded
     if (loadedProfile != null) {
@@ -205,8 +205,11 @@ public class InsuranceSystem {
 
   public void createPolicy(PolicyType type, String[] options) {
 
+    int age;
+
     for (Profile profile : database) {
       if (profile.getLoadStatus() == true) {
+        age = Integer.parseInt(profile.getAge());
         break;
       } else if (profile == database.get(database.size() - 1)) {
         MessageCli.NO_PROFILE_FOUND_TO_CREATE_POLICY.printMessage();
@@ -214,6 +217,5 @@ public class InsuranceSystem {
       }
     }
 
-    
   }
 }
