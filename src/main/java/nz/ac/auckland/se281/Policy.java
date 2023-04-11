@@ -11,4 +11,6 @@ public abstract class Policy {
     public int getSumInsured() {
         return sumInusred;
     }
+
+    public abstract int getBasePremium();
 }

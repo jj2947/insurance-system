@@ -15,4 +15,22 @@ public class HomePolicy extends Policy {
       rental = false;
     }
   }
+
+  public String getAddress() {
+    return address;
+  }
+
+  @Override
+  public int getBasePremium() {
+
+    int basePremium;
+
+    if (rental) {
+        basePremium = (2/100)*sumInusred;
+    } else {
+        basePremium = (1/100)*sumInusred;
+    }
+
+    return basePremium;
+  }
 }
