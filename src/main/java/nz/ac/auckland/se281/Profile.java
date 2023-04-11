@@ -67,20 +67,20 @@ public class Profile {
             carPolicy.getMakeAndModel(),
             String.valueOf(carPolicy.getSumInsured()),
             String.valueOf(carPolicy.getBasePremium()),
-            String.valueOf(carPolicy.getDiscountedPremium(getNumPolicies())));
+            String.valueOf(getDiscountedPremium()));
       } else if (policy.getPolicyType() == PolicyType.HOME) {
         HomePolicy homePolicy = (HomePolicy) policy;
         MessageCli.PRINT_DB_HOME_POLICY.printMessage(
             homePolicy.getAddress(),
             String.valueOf(homePolicy.getSumInsured()),
             String.valueOf(homePolicy.getBasePremium()),
-            String.valueOf(homePolicy.getDiscountedPremium(getNumPolicies())));
+            String.valueOf(getDiscountedPremium()));
       } else {
         LifePolicy lifePolicy = (LifePolicy) policy;
         MessageCli.PRINT_DB_LIFE_POLICY.printMessage(
           String.valueOf(lifePolicy.getSumInsured()),
           String.valueOf(lifePolicy.getBasePremium()),
-          String.valueOf(lifePolicy.getDiscountedPremium(getNumPolicies())));
+          String.valueOf(getDiscountedPremium()));
       }
     }
   }

@@ -13,7 +13,7 @@ public class LifePolicy extends Policy {
   @Override
   public int getBasePremium() {
     float Age = (float)(age);
-    float basePremium = ((1+Age/100)/100)*sumInusred;
+    float basePremium = ((1+Age/100))*sumInusred;
     int premium = (int) (basePremium);
     return premium;
   }
