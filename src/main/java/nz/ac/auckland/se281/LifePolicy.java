@@ -14,7 +14,7 @@ public class LifePolicy extends Policy {
   public int getBasePremium() {
     float Age = (float)(age);
     float basePremium = ((1+Age/100)/100)*sumInusred;
-    int premium = (int) (basePremium);
+    int premium = Math.round(basePremium);
     return premium;
   }
 }
