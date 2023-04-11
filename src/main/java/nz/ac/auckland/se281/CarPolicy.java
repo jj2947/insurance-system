@@ -8,12 +8,12 @@ public class CarPolicy extends Policy {
   private int age;
   private int basePremium;
 
-  public CarPolicy(String[] options, String age) {
+  public CarPolicy(String[] options, int age) {
     super(options);
 
     makeAndModel = options[1];
     licensePlate = options[2];
-    this.age = Integer.parseInt(age);
+    this.age = age;
 
     if (options[3].equals("yes")) {
       mechanicalBreakdown = true;

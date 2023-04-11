@@ -205,11 +205,13 @@ public class InsuranceSystem {
 
   public void createPolicy(PolicyType type, String[] options) {
 
-    int age;
+    int age = 0;
+    String userName = null;
 
     for (Profile profile : database) {
       if (profile.getLoadStatus() == true) {
         age = Integer.parseInt(profile.getAge());
+        userName = profile.getUserName();
         break;
       } else if (profile == database.get(database.size() - 1)) {
         MessageCli.NO_PROFILE_FOUND_TO_CREATE_POLICY.printMessage();
@@ -217,5 +219,24 @@ public class InsuranceSystem {
       }
     }
 
+    switch (type) {
+
+      case HOME:
+      HomePolicy homePolicy = new HomePolicy(options);
+      break;
+
+      case LIFE:
+      if (age > 100) {
+        MessageCli.OVER_AGE_LIMIT_LIFE_POLICY.printMessage(userName);
+        return;
+      } else if ()
+      LifePolicy lifePolicy = new LifePolicy(options, age);
+      break;
+
+      case CAR:
+      CarPolicy carPolicy = new CarPolicy(options, age);
+      break;
+
+    }
   }
 }
