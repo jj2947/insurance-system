@@ -4,7 +4,6 @@ import nz.ac.auckland.se281.Main.PolicyType;
 public class CarPolicy extends Policy {
 
   private String makeAndModel;
-  private String licensePlate;
   private boolean mechanicalBreakdown;
   private int age;
   private int basePremium;
@@ -13,7 +12,6 @@ public class CarPolicy extends Policy {
     super(PolicyType.CAR, options);
 
     makeAndModel = options[1];
-    licensePlate = options[2];
     this.age = age;
 
     if (options[3].equals("yes")) {
