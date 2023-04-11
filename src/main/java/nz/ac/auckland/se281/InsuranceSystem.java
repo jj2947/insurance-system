@@ -26,11 +26,39 @@ public class InsuranceSystem {
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("1", ":", "");
 
       if (database.get(0).getLoadStatus() == false) {
-        MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
-            "1", database.get(0).getUserName(), database.get(0).getAge());
+
+        if (database.get(0).getNumPolicies() == 1) {
+          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+              "", "1",
+              database.get(0).getUserName(),
+              database.get(0).getAge(),
+              String.valueOf(database.get(0).getNumPolicies()),
+              "y");
+        } else {
+          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+              "", "1",
+              database.get(0).getUserName(),
+              database.get(0).getAge(),
+              String.valueOf(database.get(0).getNumPolicies()),
+              "ies");
+        }
+
       } else {
-        MessageCli.PRINT_DB_PROFILE_HEADER_SHORT.printMessage(
-            "*** ", "1", database.get(0).getUserName(), database.get(0).getAge());
+        if (database.get(0).getNumPolicies() == 1) {
+          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+              "*** ", "1",
+              database.get(0).getUserName(),
+              database.get(0).getAge(),
+              String.valueOf(database.get(0).getNumPolicies()),
+              "y");
+        } else {
+          MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+              "*** ", "1",
+              database.get(0).getUserName(),
+              database.get(0).getAge(),
+              String.valueOf(database.get(0).getNumPolicies()),
+              "ies");
+        }
       }
 
       // Prints the message for a database with 3 or more profiles
@@ -43,8 +71,21 @@ public class InsuranceSystem {
 
         // If profile is loaded, print the *** infront of it
         if (database.get(i).getLoadStatus() == false) {
-          MessageCli.PRINT_DB_PROFILE_HEADER_MINIMAL.printMessage(
-              String.valueOf(i + 1), database.get(i).getUserName(), database.get(i).getAge());
+          if (database.get(0).getNumPolicies() == 1) {
+            MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+                "*** ", "1",
+                database.get(0).getUserName(),
+                database.get(0).getAge(),
+                String.valueOf(database.get(0).getNumPolicies()),
+                "y");
+          } else {
+            MessageCli.PRINT_DB_PROFILE_HEADER_MEDIUM.printMessage(
+                "*** ", "1",
+                database.get(0).getUserName(),
+                database.get(0).getAge(),
+                String.valueOf(database.get(0).getNumPolicies()),
+                "ies");
+          }
         } else {
           MessageCli.PRINT_DB_PROFILE_HEADER_SHORT.printMessage(
               "*** ",
@@ -91,7 +132,7 @@ public class InsuranceSystem {
     }
 
     // Makes a new instance of a profile
-    Profile newProfile = new Profile(userName, age, false, 0, null);
+    Profile newProfile = new Profile(userName, age, false, null);
 
     // Prints message for when a profile is already loaded
     if (loadedProfile != null) {
@@ -225,7 +266,8 @@ public class InsuranceSystem {
       case HOME:
         HomePolicy homePolicy = new HomePolicy(options);
         loadedProfile.getPolicies().add(homePolicy);
-        MessageCli.NEW_POLICY_CREATED.printMessage(homePolicy.getPolicyType().toString(), loadedProfile.getUserName());
+        MessageCli.NEW_POLICY_CREATED.printMessage(
+            homePolicy.getPolicyType().toString(), loadedProfile.getUserName());
         break;
 
       case LIFE:
@@ -242,13 +284,15 @@ public class InsuranceSystem {
 
         LifePolicy lifePolicy = new LifePolicy(options, age);
         loadedProfile.getPolicies().add(lifePolicy);
-        MessageCli.NEW_POLICY_CREATED.printMessage(lifePolicy.getPolicyType().toString(), loadedProfile.getUserName());
+        MessageCli.NEW_POLICY_CREATED.printMessage(
+            lifePolicy.getPolicyType().toString(), loadedProfile.getUserName());
         break;
 
       case CAR:
         CarPolicy carPolicy = new CarPolicy(options, age);
         loadedProfile.getPolicies().add(carPolicy);
-        MessageCli.NEW_POLICY_CREATED.printMessage(carPolicy.getPolicyType().toString(), loadedProfile.getUserName());
+        MessageCli.NEW_POLICY_CREATED.printMessage(
+            carPolicy.getPolicyType().toString(), loadedProfile.getUserName());
         break;
     }
   }

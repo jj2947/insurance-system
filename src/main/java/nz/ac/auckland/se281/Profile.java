@@ -9,16 +9,14 @@ public class Profile {
   private String userName;
   private String age;
   private boolean loadStatus;
-  private int numPolicies;
   private ArrayList<Policy> policies = new ArrayList<>();
   private Policy policy;
 
   // Constructor which initialises userName and age vaariables
-  public Profile(String userName, String age, boolean loadStatus, int numPolicies, Policy policy) {
+  public Profile(String userName, String age, boolean loadStatus,  Policy policy) {
     this.userName = userName;
     this.age = age;
     this.loadStatus = loadStatus;
-    this.numPolicies = numPolicies;
     this.policy = policy;
   }
 
@@ -43,7 +41,7 @@ public class Profile {
   }
 
   public int getNumPolicies() {
-    return numPolicies;
+    return policies.size();
   }
 
   public void addPolicy(Policy policy) {
