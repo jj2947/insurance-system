@@ -333,7 +333,7 @@ public class InsuranceSystem {
 
     switch (type) {
 
-        // User wants to create a Home policy
+      // User wants to create a Home policy
       case HOME:
 
         // A new home policy is added to the loaded profile

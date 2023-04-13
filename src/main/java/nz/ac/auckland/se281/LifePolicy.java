@@ -16,8 +16,8 @@ public class LifePolicy extends Policy {
   // Implements the abstract method getBasePremium
   @Override
   public int getBasePremium() {
-    float Age = (float) (age);
-    float basePremium = ((1 + Age / 100) / 100) * sumInusred;
+    float floatAge = (float) (age);
+    float basePremium = ((1 + floatAge / 100) / 100) * sumInusred;
     int premium = (int) (basePremium);
     return premium;
   }
