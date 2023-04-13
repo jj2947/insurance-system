@@ -478,6 +478,46 @@ public class MainTest {
       assertDoesNotContain("jorDan");
       assertDoesNotContain("TiM");
     }
+
+    @Test
+    public void TY_05_your_own_test() throws Exception {
+      runCommands(
+          CREATE_PROFILE,
+          "Jordan",
+          "-1",
+          CREATE_PROFILE,
+          "TiM",
+          "-5",
+          CREATE_PROFILE,
+          "Jenny",
+          "23",
+          PRINT_DB,
+          LOAD_PROFILE,
+          "Jenny",
+          POLICY_HOME,
+          options("1000000", "20 Symonds Street", "yes"),
+          POLICY_HOME,
+          options("1000000", "20 Queen Street", "no"),
+          POLICY_LIFE,
+          options("1000000"),
+          POLICY_LIFE,
+          options("5000"),
+          PRINT_DB);
+
+      assertContains("Profile loaded for Jenny.");
+      assertContains("New home policy created for Jenny.");
+      assertContains("New life policy created for Jenny.");
+
+      assertContains("Database has 1 profile:");
+      assertContains("*** 1: Jenny, 23, 3 policies for a total of $33840");
+
+      assertContains(
+          "Home Policy (20 Symonds Street, Sum Insured: $1000000, Premium: $20000 -> $16000)");
+      assertContains(
+          "Home Policy (20 Queen Street, Sum Insured: $1000000, Premium: $10000 -> $8000)");
+      assertContains("Life Policy (Sum Insured: $1000000, Premium: $12300 -> $9840)");
+      assertContains("Jenny already has a life policy. No new policy was created.");
+    }
   }
 
   private static final Object[] CREATE_SOME_CLIENTS =
