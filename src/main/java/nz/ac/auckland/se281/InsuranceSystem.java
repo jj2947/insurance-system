@@ -191,17 +191,16 @@ public class InsuranceSystem {
           }
         }
 
+        // Loads the profile
         database.get(i).setLoadStatus(true);
         MessageCli.PROFILE_LOADED.printMessage(userName);
-        break;
-
-        // If a profile can't be found in the database, it won't be successfully loaded and the
-        // failure message will be printed
-      } else if (i == database.size() - 1) {
-        MessageCli.NO_PROFILE_FOUND_TO_LOAD.printMessage(userName);
-      }
+        return;
     }
   }
+
+  // Prints the no profile found message if the profile is not in the database
+  MessageCli.NO_PROFILE_FOUND_TO_LOAD.printMessage(userName);
+}
 
   // Implements the UNLOAD_PROFILE command
   public void unloadProfile() {
@@ -229,6 +228,8 @@ public class InsuranceSystem {
 
     // Checks to see if the username is in the profiles database
     for (Profile profile : database) {
+
+      // Profile is in database
       if (userName.equals(profile.getUserName())) {
 
         // Cannot delete profile when loaded
