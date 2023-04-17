@@ -19,155 +19,83 @@ public class InsuranceSystem {
     if (database.size() == 0) {
 
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");
+      return;
 
       // Database with one profile
     } else if (database.size() == 1) {
 
-      // Prints how many profiles the database has
+      // Prints how many profiles the database has for a database with 1 profile
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("1", ":", "");
 
-      // Profile that isn't loaded
-      if (database.get(0).getLoadStatus() == false) {
+    } else {
+      // Prints how many profiles there are in the database for a database with 2 or more profiles
+      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(database.size()), "s", ":");
+    }
 
-        // Prints details for a profile with 1 policy
-        if (database.get(0).getNumPolicies() == 1) {
+    // Loops through the database arraylist to get all the profiles in the database and print the
+    // details for each profile
+    for (int i = 0; i < database.size(); i++) {
+
+      // Profile that is loaded
+      if (database.get(i).getLoadStatus() == true) {
+
+        // Prints the details for a profile with 1 policy that is loaded
+        if (database.get(i).getNumPolicies() == 1) {
           MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
-              "",
-              "1",
-              database.get(0).getUserName(),
-              database.get(0).getAge(),
-              String.valueOf(database.get(0).getNumPolicies()),
+              "*** ",
+              String.valueOf(i + 1),
+              database.get(i).getUserName(),
+              database.get(i).getAge(),
+              String.valueOf(database.get(i).getNumPolicies()),
               "y",
-              String.valueOf(database.get(0).getTotalPrice()));
+              String.valueOf(database.get(i).getTotalPrice()));
           // Prints the policies of the profile
-          database.get(0).printPolicies();
+          database.get(i).printPolicies();
 
-          // Prints details for a profile with 0 or more than 1 policies
+          // Prints details for a profile with 0 or more than 1 policies that is loaded
         } else {
           MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
-              "",
-              "1",
-              database.get(0).getUserName(),
-              database.get(0).getAge(),
-              String.valueOf(database.get(0).getNumPolicies()),
+              "*** ",
+              String.valueOf(i + 1),
+              database.get(i).getUserName(),
+              database.get(i).getAge(),
+              String.valueOf(database.get(i).getNumPolicies()),
               "ies",
-              String.valueOf(database.get(0).getTotalPrice()));
-
-          // Prints policies of the profile
-          database.get(0).printPolicies();
+              String.valueOf(database.get(i).getTotalPrice()));
+          // Prints the policies of the profile
+          database.get(i).printPolicies();
         }
 
-        // Profile that is loaded
+        // Profile that isn't loaded
       } else {
 
-        // Prints details for a profile with 1 policy
-        if (database.get(0).getNumPolicies() == 1) {
+        // Prints the details for a profile with 1 policy that isn't loaded
+        if (database.get(i).getNumPolicies() == 1) {
           MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
-              "*** ",
-              "1",
-              database.get(0).getUserName(),
-              database.get(0).getAge(),
-              "1",
+              "",
+              String.valueOf(i + 1),
+              database.get(i).getUserName(),
+              database.get(i).getAge(),
+              String.valueOf(database.get(i).getNumPolicies()),
               "y",
-              String.valueOf(database.get(0).getTotalPrice()));
+              String.valueOf(database.get(i).getTotalPrice()));
           // Prints the policies of the profile
-          database.get(0).printPolicies();
+          database.get(i).printPolicies();
 
-          // Prints details for a profile with 0 or more than 1 policies
+          // Prints details for a profile with 0 or more than 1 policies that isn't loaded
         } else {
           MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
-              "*** ",
-              "1",
-              database.get(0).getUserName(),
-              database.get(0).getAge(),
-              String.valueOf(database.get(0).getNumPolicies()),
+              "",
+              String.valueOf(i + 1),
+              database.get(i).getUserName(),
+              database.get(i).getAge(),
+              String.valueOf(database.get(i).getNumPolicies()),
               "ies",
-              String.valueOf(database.get(0).getTotalPrice()));
+              String.valueOf(database.get(i).getTotalPrice()));
           // Prints the policies of the profile
-          database.get(0).printPolicies();
+          database.get(i).printPolicies();
         }
       }
-
-      // Database with 3 or more profiles
-    } else {
-
-      // Prints how many profiles there are in the databse
-      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(database.size()), "s", ":");
-
-      // Loops through the database arraylist to get all the profiles in the database arraylist
-      for (int i = 0; i < database.size(); i++) {
-
-        // Profile that is loaded
-        if (database.get(i).getLoadStatus() == true) {
-
-          // Prints the details for a profile with 1 policy
-          if (database.get(i).getNumPolicies() == 1) {
-            MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
-                "*** ",
-                String.valueOf(i + 1),
-                database.get(i).getUserName(),
-                database.get(i).getAge(),
-                String.valueOf(database.get(i).getNumPolicies()),
-                "y",
-                String.valueOf(database.get(i).getTotalPrice()));
-            // Prints the policies of the profile
-            database.get(i).printPolicies();
-
-            // Prints details for a profile with 0 or more than 1 policies
-          } else {
-            MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
-                "*** ",
-                String.valueOf(i + 1),
-                database.get(i).getUserName(),
-                database.get(i).getAge(),
-                String.valueOf(database.get(i).getNumPolicies()),
-                "ies",
-                String.valueOf(database.get(i).getTotalPrice()));
-            // Prints the policies of the profile
-            database.get(i).printPolicies();
-          }
-
-          // Profile that isn't loaded
-        } else {
-
-          // Prints the details for a profile with 1 policy
-          if (database.get(i).getNumPolicies() == 1) {
-            MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
-                "",
-                String.valueOf(i + 1),
-                database.get(i).getUserName(),
-                database.get(i).getAge(),
-                String.valueOf(database.get(i).getNumPolicies()),
-                "y",
-                String.valueOf(database.get(i).getTotalPrice()));
-            // Prints the policies of the profile
-            database.get(i).printPolicies();
-
-            // Prints details for a profile with 0 or more than 1 policies
-          } else {
-            MessageCli.PRINT_DB_PROFILE_HEADER_LONG.printMessage(
-                "",
-                String.valueOf(i + 1),
-                database.get(i).getUserName(),
-                database.get(i).getAge(),
-                String.valueOf(database.get(i).getNumPolicies()),
-                "ies",
-                String.valueOf(database.get(i).getTotalPrice()));
-            // Prints the policies of the profile
-            database.get(i).printPolicies();
-          }
-        }
-      }
-    }
-  }
-
-  private void printDatabase(int databaseSize) {
-    if (databaseSize == 0) {
-      MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");
-    } else if (databaseSize == 1) {
-      MessageCli.PRINT_DB_POLICY_COUNT.printMessage("1", "", ":");
-    } else {
-      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(databaseSize), "s", ":");
     }
   }
 
