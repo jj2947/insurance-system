@@ -161,6 +161,16 @@ public class InsuranceSystem {
     }
   }
 
+  private void printDatabase(int databaseSize) {
+    if (databaseSize == 0) {
+      MessageCli.PRINT_DB_POLICY_COUNT.printMessage("0", "s", ".");
+    } else if (databaseSize == 1) {
+      MessageCli.PRINT_DB_POLICY_COUNT.printMessage("1", "", ":");
+    } else {
+      MessageCli.PRINT_DB_POLICY_COUNT.printMessage(String.valueOf(databaseSize), "s", ":");
+    }
+  }
+
   // Implements the CREATE_PROFILE command
   public void createNewProfile(String userName, String age) {
 
@@ -246,7 +256,13 @@ public class InsuranceSystem {
       // If a profile is in the database, it will be successfully loaded and a success message will
       // be printed, if there is an already loaded profile that profile will be unloaded
       if (userName.equals(database.get(i).getUserName())) {
-        unloadProfile();
+
+        for (Profile profile : database) {
+          if (profile.getLoadStatus() == true) {
+            unloadProfile();
+          }
+        }
+
         database.get(i).setLoadStatus(true);
         MessageCli.PROFILE_LOADED.printMessage(userName);
         break;
@@ -333,7 +349,7 @@ public class InsuranceSystem {
 
     switch (type) {
 
-      // User wants to create a Home policy
+        // User wants to create a Home policy
       case HOME:
 
         // A new home policy is added to the loaded profile
