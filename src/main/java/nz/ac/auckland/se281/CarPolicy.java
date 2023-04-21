@@ -19,7 +19,8 @@ public class CarPolicy extends Policy {
     this.age = age;
 
     // Gets the mechanical breakdown information from options array
-    if (options[3].equals("yes")) {
+    options[3] = options[3].toLowerCase();
+    if (options[3].contains("y")) {
       mechanicalBreakdown = true;
     } else {
       mechanicalBreakdown = false;

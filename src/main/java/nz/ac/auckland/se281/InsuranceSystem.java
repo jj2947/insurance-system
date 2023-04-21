@@ -109,7 +109,8 @@ public class InsuranceSystem {
 
     // Makes sure the inputted username is in title case
     userName = userName.toLowerCase();
-    userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
+    char firstChar = Character.toUpperCase(userName.charAt(0));
+    userName = firstChar + userName.substring(1);
 
     // Checks if an inputted age is an integer and assigns it to the vairble isInt
     for (int i = 0; i < age.length(); i++) {
@@ -170,7 +171,8 @@ public class InsuranceSystem {
 
     // Makes sure the inputted username is in title case
     userName = userName.toLowerCase();
-    userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
+    char firstChar = Character.toUpperCase(userName.charAt(0));
+    userName = firstChar + userName.substring(1);
 
     // If there are no profiles in the database, a profile cannot be loaded
     if (database.size() == 0) {
@@ -195,12 +197,12 @@ public class InsuranceSystem {
         database.get(i).setLoadStatus(true);
         MessageCli.PROFILE_LOADED.printMessage(userName);
         return;
+      }
     }
-  }
 
-  // Prints the no profile found message if the profile is not in the database
-  MessageCli.NO_PROFILE_FOUND_TO_LOAD.printMessage(userName);
-}
+    // Prints the no profile found message if the profile is not in the database
+    MessageCli.NO_PROFILE_FOUND_TO_LOAD.printMessage(userName);
+  }
 
   // Implements the UNLOAD_PROFILE command
   public void unloadProfile() {
@@ -224,7 +226,8 @@ public class InsuranceSystem {
 
     // Makes sure the username is in title case
     userName = userName.toLowerCase();
-    userName = userName.replace(userName.charAt(0), Character.toUpperCase(userName.charAt(0)));
+    char firstChar = Character.toUpperCase(userName.charAt(0));
+    userName = firstChar + userName.substring(1);
 
     // Checks to see if the username is in the profiles database
     for (Profile profile : database) {
@@ -278,7 +281,7 @@ public class InsuranceSystem {
 
     switch (type) {
 
-        // User wants to create a Home policy
+      // User wants to create a Home policy
       case HOME:
 
         // A new home policy is added to the loaded profile

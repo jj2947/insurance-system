@@ -14,7 +14,8 @@ public class HomePolicy extends Policy {
     address = options[1];
 
     // Sets the rental variable from options array
-    if (options[2].equals("yes")) {
+    options[2] = options[2].toLowerCase();
+    if (options[2].contains("y")) {
       rental = true;
     } else {
       rental = false;
