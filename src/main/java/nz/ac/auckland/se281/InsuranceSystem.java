@@ -24,7 +24,7 @@ public class InsuranceSystem {
       // Database with one profile
     } else if (database.size() == 1) {
 
-      // Prints how many profiles the database has for a database with 1 profile
+      // Prints number of profiles in the database
       MessageCli.PRINT_DB_POLICY_COUNT.printMessage("1", ":", "");
 
     } else {
@@ -135,7 +135,7 @@ public class InsuranceSystem {
       }
     }
 
-    // Makes a new instance of a profile
+    // Makes a new instance of a profile with the inputted username and age
     Profile newProfile = new Profile(userName, age, false);
 
     // Prints message for when a profile is already loaded
@@ -265,7 +265,7 @@ public class InsuranceSystem {
     // Gets every profile in the databse
     for (Profile profile : database) {
 
-      // If there is a laoded profile, it's parameters are set to variable
+      // If there is a loaded profile, it's parameters are set to variables
       if (profile.getLoadStatus() == true) {
         age = Integer.parseInt(profile.getAge());
         userName = profile.getUserName();
